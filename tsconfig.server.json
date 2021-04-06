@@ -1,9 +1,0 @@
-{
-	"compilerOptions": {
-		"outDir": "./app"
-	},
-	"extends": "./tsconfig.json",
-	"exclude": [
-		"./src/client"
-	]
-}
