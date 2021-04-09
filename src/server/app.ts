@@ -1,9 +1,8 @@
-import * as express from "express";
-const app = express();
-app.get("/", (_request, response) => {
-	response.send("Hello nagato");
-})
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-	console.log(`Server is running in http://localhost:${PORT}`)
-})
+import * as http from 'http';
+import {IncomingMessage, ServerResponse} from "http";
+import {BaseRouter} from "./core/base.router";
+
+const router = new BaseRouter();
+const app = http.createServer((req:IncomingMessage, res:ServerResponse) => router.start(req, res));
+
+app.listen(3000);
