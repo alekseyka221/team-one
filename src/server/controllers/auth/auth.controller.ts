@@ -3,6 +3,7 @@ import {ServerResponse} from "http";
 import User = require("../../models/User");
 import * as bcrypt from 'bcryptjs';
 import {randomInt} from "crypto";
+import {IUser} from "../../interfaces/IUser";
 
 export class AuthController
 {
@@ -20,9 +21,10 @@ export class AuthController
 			res.end();
 			return;
 		}
-		const candidate = await User.findOne(data['email'])
+		const candidate = await User.findOne({"email": data['email']})
 		if (candidate)
 		{
+
 			res.statusCode = 400;
 			res.setHeader('Content-Type', 'application/json');
 			res.write(JSON.stringify({
@@ -31,18 +33,18 @@ export class AuthController
 			res.end();
 			return;
 		}
+		console.log("huy")
 
-		const salt = randomInt(100000, 999999);
-
-		const hashedPass = await bcrypt.hash(data['password'], salt);
-
-		const user = new User({email: data['email'], password: hashedPass, login: data['login'], salt});
+		const hashedPass = bcrypt.hashSync(data['password'], 10);
+		console.log("naruto")
+		const user = new User({email: data['email'], password: hashedPass, login: data['login']});
 		await user.save();
+		console.log("sasuke")
 		res.statusCode = 201;
 		res.setHeader('Content-Type', 'application/json');
 		res.write(JSON.stringify({message: "Пользователь создан"}));
 		res.end();
-
+		console.log("nagato huesos")
 	}
 
 	public login(data: object, _ops: boolean[] = [])

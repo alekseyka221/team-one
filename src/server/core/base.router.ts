@@ -98,7 +98,8 @@ export class BaseRouter
 			{
 				return;
 			}
-			this.args = this.parseBodyRequest(data);
+			// this.args = this.parseBodyRequest(data);
+			this.args = JSON.parse(data);
 			this.getControllerAndAction(req.url.split('/'))
 			this.delegateAuthority(_res);
 			console.log(this.controllerName);

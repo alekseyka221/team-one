@@ -1,5 +1,18 @@
 @import "../node_modules/materialize-css/dist/css/materialize.min.css";
 
+
+body {
+    height: 100vh;
+}
+
+#root {
+    height: 100%;
+}
+
+.App {
+    height: 100%;
+}
+
 @font-face {
     font-family: Merriweather;
     src: url("./fonts/Merriweather-Regular.ttf");

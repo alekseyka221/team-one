@@ -46,5 +46,7 @@ export class Validator
 
 export function validateResult(): Array<string>
 {
-	return Validator.error;
+	let errors = Validator.error;
+	Validator.error = [];
+	return errors;
 }
