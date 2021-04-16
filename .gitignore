@@ -3,6 +3,7 @@
 ### redactor ###
 .idea
 ### Node ###
+test
 # Logs
 logs
 *.log

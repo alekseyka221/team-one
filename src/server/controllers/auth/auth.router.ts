@@ -1,32 +1,35 @@
 import {IRouter} from "../../interfaces/IRouter";
 import {ServerResponse} from "http";
 import {AuthController} from "./auth.controller";
+import {Validator} from "../../lib/validator";
 
-class AuthRouter implements IRouter{
-    start(actionName: string, _res: ServerResponse, data: object)
-    {
-        const controller = new AuthController();
-        if(actionName === 'register')
-        {
-            //сначала будем просто возращать токен и переводить на сайт
-            //потом будем через smtp-server отправлять сообщение для подтверждения
-            controller.register(data);
-        }
+class AuthRouter implements IRouter
+{
 
-        if(actionName === 'login')
-        {
-            controller.login(data);
-        }
-        if (actionName === 'logout')
-        {
-            controller.logout(data);
-        }
-    }
-    private validateParams(data : object)
-    {
-        if("email" in data)
-        {
+	start(actionName: string, res: ServerResponse, data: Object)
+	{
+		const controller = new AuthController();
+		if (actionName === 'register')
+		{
+			controller.register(data, res,[
+				Validator.isEmail(data['email']),
+				Validator.isLogin(data['login']),
+				Validator.isPassword(data['password'])
+			]);
 
-        }
-    }
+
+		}
+		if (actionName === 'login')
+		{
+			controller.login(data,[
+
+			]);
+		}
+		if (actionName === 'logout')
+		{
+			controller.logout(data);
+		}
+		res.statusCode = 200;
+	}
+
 }

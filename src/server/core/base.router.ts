@@ -20,16 +20,11 @@ export class BaseRouter
     /**
      * главный метод базового роутера. В зависимости от controller name
      * должен делегировать полномочия роутеру из модуля по названием controllerName
-     * @param request
-     * @param _response
+     * @param {IncomingMessage} request
+     * @param {ServerResponse} _response
      */
     public start(request: IncomingMessage, _response: ServerResponse)
     {
-        if (request.url === undefined)
-        {
-            return;
-        }
-
         if(request.method === 'GET')
         {
             this.startGetMethod(request, _response);
@@ -41,6 +36,10 @@ export class BaseRouter
     }
     private startGetMethod(req, _res)
     {
+		if (req.url === undefined)
+		{
+			return;
+		}
         let rowUrl: string = req.url;
         console.log(rowUrl);
         /*
@@ -49,18 +48,19 @@ export class BaseRouter
          */
         if (req.url.indexOf('?') !== -1)
         {
-            rowUrl = req.url.split('?');
-            this.strArgs = rowUrl[1];
-            rowUrl = rowUrl[0];
+        	const arrPathAndData : Array<string> = req.url.split('?');
+            this.strArgs = arrPathAndData[1];
+            rowUrl = arrPathAndData[0];
         }
         /*
-        в зависимости от метода запроса начинаем парсить тело
+        начинаем парсить тело запроса
          */
         this.getBodyGetMethod();
         /*
         режем url и получаем название контроллера и экшена
          */
         this.getControllerAndAction(rowUrl.split('/'));
+        this.delegateAuthority(_res);
         console.log(this.args);
         console.log(this.controllerName);
         console.log(this.actionName);
@@ -73,7 +73,7 @@ export class BaseRouter
      * @private
      * @return void
      */
-    private getControllerAndAction(routes): void
+    private getControllerAndAction(routes : Array<string>): void
     {
         if (routes[1] !== '')
         {
@@ -118,11 +118,12 @@ export class BaseRouter
         })
         req.on('end', () => {
             console.log('data in end POST event = ', data);
-
-
-
+			if (req.url === undefined)
+			{
+				return;
+			}
             this.args = this.parseBodyRequest(data);
-            this.getControllerAndAction(req.url?.split('/'))
+            this.getControllerAndAction(req.url.split('/'))
             this.delegateAuthority(_res);
             console.log(this.controllerName);
             console.log(this.actionName);

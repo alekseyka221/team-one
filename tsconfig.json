@@ -5,8 +5,8 @@
 		"target": "es2017",
 		"declaration": false,
 		"sourceMap": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
+		//"noUnusedLocals": true,
+		//"noUnusedParameters": true,
 		"strictNullChecks": true,
 		"skipLibCheck": true
 	},
