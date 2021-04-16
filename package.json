@@ -6,7 +6,9 @@
 	"scripts": {
 		"test": "serv",
 		"start": "node --inspect=5858 -r ts-node/register  ./src/server/app.ts",
-		"start:watch": "nodemon"
+		"start:watch": "nodemon",
+		"client": "npm run start --prefix src/client",
+		"dev": "concurrently \"npm run start:watch\" \"npm run client\""
 	},
 	"repository": {
 		"type": "git",
