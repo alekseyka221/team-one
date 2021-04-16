@@ -4,7 +4,6 @@ export class Validator
 
 	public static isEmail(email: string): boolean
 	{
-		console.log('xyeta');
 		const regex = /^[\w]{1}[\w-\.]*@[\w-]+\.[a-z]{2,4}$/i;
 		if (!regex.test(email) || typeof email === "undefined")
 		{

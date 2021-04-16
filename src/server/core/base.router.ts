@@ -47,6 +47,7 @@ export class BaseRouter
 	{
 		if (req.url === undefined)
 		{
+			// TODO сюда прописать формирование ответа в виде ошибки
 			return;
 		}
 		let rowUrl: string = req.url;
@@ -180,14 +181,10 @@ export class BaseRouter
 	 * @param {ServerResponse}_res
 	 * @private
 	 */
-	private delegateAuthority(_res: ServerResponse)
+	private async delegateAuthority(_res: ServerResponse)
 	{
-		import(`../controllers/${this.controllerName}/${this.controllerName}.router`).then(
-			(newRouter: IRouter) => {
-				newRouter.start(this.actionName, _res, this.args);
-			}
-		)
-
+		const newRouter : IRouter = await import(`../controllers/${this.controllerName}/${this.controllerName}.router`)
+		newRouter.start(this.actionName, _res,this.args);
 	}
 
 

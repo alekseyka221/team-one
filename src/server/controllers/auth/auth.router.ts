@@ -5,7 +5,6 @@ import {Validator} from "../../lib/validator";
 
 class AuthRouter implements IRouter
 {
-
 	start(actionName: string, res: ServerResponse, data: Object)
 	{
 		const controller = new AuthController();
@@ -21,9 +20,7 @@ class AuthRouter implements IRouter
 		}
 		if (actionName === 'login')
 		{
-			controller.login(data,[
-
-			]);
+			console.log("Я добрался вот сюда")
 		}
 		if (actionName === 'logout')
 		{
@@ -33,3 +30,4 @@ class AuthRouter implements IRouter
 	}
 
 }
+export = new AuthRouter()
