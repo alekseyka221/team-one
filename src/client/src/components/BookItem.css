@@ -1,0 +1,8 @@
+.bookItemContent {
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+
+.bookItem {
+    margin-top: 16px;
+}

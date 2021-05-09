@@ -33,18 +33,15 @@ export class AuthController
 			res.end();
 			return;
 		}
-		console.log("huy")
 
 		const hashedPass = bcrypt.hashSync(data['password'], 10);
 		console.log("naruto")
 		const user = new User({email: data['email'], password: hashedPass, login: data['login']});
 		await user.save();
-		console.log("sasuke")
 		res.statusCode = 201;
 		res.setHeader('Content-Type', 'application/json');
 		res.write(JSON.stringify({message: "Пользователь создан"}));
 		res.end();
-		console.log("nagato huesos")
 	}
 
 	public login(data: object, _ops: boolean[] = [])
