@@ -1,3 +1,16 @@
 .userProfilePicture {
     border-radius: 64px;
 }
+
+.basicInfo {
+    font-size: 24px;
+    font-family: Merriweather;
+}
+
+.interests {
+    font-size: 20px;
+}
+
+.userInfoContainer {
+    background: rgba(83, 69, 69, 0.2);
+}
