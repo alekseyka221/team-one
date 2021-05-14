@@ -7,27 +7,25 @@ class AuthRouter implements IRouter
 {
 	start(actionName: string, res: ServerResponse, data: Object)
 	{
-		const controller = new AuthController();
+		const controller = new AuthController(res, data);
 		if (actionName === 'register')
 		{
-			controller.register(data, res,[
+			controller.register([
 				Validator.isEmail(data['email']),
 				Validator.isLogin(data['login']),
 				Validator.isPassword(data['password'])
 			]);
-
-
 		}
 		if (actionName === 'login')
 		{
-			console.log("Я добрался вот сюда")
+			controller.login([
+				Validator.isEmail(data['email']),
+				Validator.isLogin(data['login']),
+				Validator.isPassword(data['password'])
+			]);
 		}
-		if (actionName === 'logout')
-		{
-			controller.logout(data);
-		}
-		res.statusCode = 200;
 	}
 
 }
+
 export = new AuthRouter()

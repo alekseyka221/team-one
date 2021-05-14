@@ -23,7 +23,7 @@ export class BaseRouter
 	 * @param {IncomingMessage} request
 	 * @param {ServerResponse} _response
 	 */
-	public start(request: IncomingMessage, _response: ServerResponse)
+	public start(request, _response)
 	{
 		if (request.method === 'GET')
 		{
@@ -184,7 +184,7 @@ export class BaseRouter
 	 */
 	private async delegateAuthority(_res: ServerResponse)
 	{
-		const newRouter : IRouter = await import(`../controllers/${this.controllerName}/${this.controllerName}.router`)
+		const newRouter : IRouter = await import(`../controllers/`+this.controllerName+`/`+this.controllerName+`.router`);
 		newRouter.start(this.actionName, _res,this.args);
 	}
 

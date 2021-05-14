@@ -1,57 +1,101 @@
-import {validateResult} from "../../lib/validator";
-import {ServerResponse} from "http";
-import User = require("../../models/User");
 import * as bcrypt from 'bcryptjs';
-import {randomInt} from "crypto";
+import * as jwt from 'jsonwebtoken';
+import * as config from "config";
 import {IUser} from "../../interfaces/IUser";
+import {BaseController} from "../../core/base.controller";
+import {validateResult} from "../../lib/validator";
+import User = require("../../models/User");
 
-export class AuthController
+
+export class AuthController extends BaseController
 {
-	public async register(data: object, res: ServerResponse, _ops: boolean[] = [])
+	public async register(_ops: boolean[] = [])
 	{
 		let errors = validateResult()
 		if (errors.length > 0)
 		{
-			res.statusCode = 400;
-			res.setHeader('Content-Type', 'application/json');
-			res.write(JSON.stringify({
-				errors: errors,
-				message: "Некорректные данные при регистрации"
-			}));
-			res.end();
+			this.generateResponse(
+				{
+					errors: errors,
+					message: "Некорректные данные при регистрации"
+				},
+				400
+			);
 			return;
 		}
-		const candidate = await User.findOne({"email": data['email']})
+		const candidate = await User.findOne({"email": this.data['email']})
 		if (candidate)
 		{
-
-			res.statusCode = 400;
-			res.setHeader('Content-Type', 'application/json');
-			res.write(JSON.stringify({
-				message: "Такой пользователь уже существует"
-			}));
-			res.end();
+			this.generateResponse(
+				{
+					message: "Такой пользователь уже существует"
+				},
+				400
+			)
 			return;
 		}
 
-		const hashedPass = bcrypt.hashSync(data['password'], 10);
-		console.log("naruto")
-		const user = new User({email: data['email'], password: hashedPass, login: data['login']});
+		const hashedPass = bcrypt.hashSync(this.data['password'], 10);
+		const user = new User({email: this.data['email'], password: hashedPass, login: this.data['login']});
 		await user.save();
-		res.statusCode = 201;
-		res.setHeader('Content-Type', 'application/json');
-		res.write(JSON.stringify({message: "Пользователь создан"}));
-		res.end();
+		this.generateResponse(
+			{
+				message: "Пользователь создан"
+			},
+			201
+		)
 	}
 
-	public login(data: object, _ops: boolean[] = [])
+	public async login(_ops: boolean[] = [])
 	{
-		console.log(data)
+		let errors = validateResult()
+		if (errors.length > 0)
+		{
+			this.generateResponse(
+				{
+					errors: errors,
+					message: "Некорректные данные"
+				},
+				400
+			);
+			return;
+		}
+
+		const user : IUser = await User.findOne({email : this.data['email']})
+		if (!user)
+		{
+			this.generateResponse(
+				{
+					message: 'Пользователь не найден'
+				},
+				400
+			)
+			return;
+		}
+		const isMatch = bcrypt.compareSync(this.data['password'], user.password);
+		if (!isMatch)
+		{
+			this.generateResponse(
+				{
+					message : 'Неправильный пароль'
+				},
+				400
+			);
+			return ;
+		}
+		const token = jwt.sign(
+			{ userId: user.id },
+			config.get('jwtSecret'),
+			{ expiresIn: '1h' }
+		)
+		this.generateResponse(
+			{
+				token,
+				userId : user.id
+			}
+		)
+		return;
 	}
 
-	public logout(data: object, _ops: boolean[] = [])
-	{
-		console.log(data)
-	}
 
 }

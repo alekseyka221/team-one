@@ -5,7 +5,7 @@ import {IncomingMessage, ServerResponse} from "http";
 import {BaseRouter} from "./core/base.router";
 
 const router = new BaseRouter();
-const app = http.createServer((req: IncomingMessage, res: ServerResponse) => router.start(req, res));
+const app = http.createServer((req, res) => router.start(req, res));
 
 const PORT = config.get('port') || 5000;
 
