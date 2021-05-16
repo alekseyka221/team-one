@@ -1,0 +1,80 @@
+#AuthPage {
+    background: url("../backgrounds/AuthBackground.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    min-height: 100vh;
+    background-repeat: repeat;
+    font-family: "Merriweather", serif;
+    margin: 0px;
+}
+
+.authSpacer {
+    height: 60px;
+}
+
+.infoUnderlined {
+    font-family: Merriweather;
+    font-size: 48px;
+    color: #b5838d;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+#AuthPage > .authContainer {
+    background-color: #beaeae;
+    border-radius: 2px;
+    height: 384px;
+    padding: 16px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.infoRectangle {
+    background-color: #beaeae;
+    border-radius: 32px;
+    font-family: Merriweather;
+    font-weight: bolder;
+    font-style: italic;
+    font-size: 26px;
+    text-align: center;
+}
+
+#AuthPage. input {
+    border: 2px solid black;
+}
+
+.dot {
+    height: 50px;
+    width: 50px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.authTitle {
+    font-size: 28px;
+    display: block;
+    margin-bottom: 16px;
+}
+
+#AuthPage .inputEmail, #AuthPage .inputPassword {
+    margin-top: 12px;
+}
+
+.loginButton, .registrationButton {
+    width: 100%;
+    height: 48px;
+    margin-top: 12px;
+}
+
+.loginButton {
+    color: #293241;
+    background-color: #f8edc6;
+}
+
+.registrationButton {
+    color: #293241;
+    background-color: #ffb4a2;
+}

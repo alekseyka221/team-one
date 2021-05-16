@@ -1,0 +1,23 @@
+.bookItemContent {
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+
+.bookItem {
+    margin-top: 16px;
+}
+
+.bookTitle {
+    box-sizing: border-box;
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    background-color: rgba(200, 200, 200, 0.8);
+    margin-top: -6px;
+    margin-bottom: -6px;
+    color: black;
+    font-size: 26px;
+    width: 100%;
+    white-space: nowrap;
+    display: inline-block;
+}

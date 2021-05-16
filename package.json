@@ -1,5 +1,58 @@
 {
-  "dependencies": {
-    "typescript": "^4.2.3"
-  }
+	"name": "book-exchange",
+	"version": "1.0.0",
+	"description": "Проект по созданию онлайн-платформы для обмена книг",
+	"main": "./src/server/app.ts",
+	"scripts": {
+		"test": "serv",
+		"start": "node --inspect=5858 -r ts-node/register  ./src/server/app.ts",
+		"start:watch": "nodemon",
+		"client": "npm run start --prefix src/client",
+		"dev": "concurrently \"npm run start:watch\" \"npm run client\""
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/alekseyka221/team-one.git"
+	},
+	"author": "SKHSH",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/alekseyka221/team-one/issues"
+	},
+	"homepage": "https://github.com/alekseyka221/team-one#readme",
+	"dependencies": {
+		"@types/bcryptjs": "^2.4.2",
+		"@types/config": "^0.0.38",
+		"@types/express": "^4.17.11",
+		"@types/jsonwebtoken": "8.5.1",
+		"@types/mongoose": "^5.10.4",
+		"bcryptjs": "^2.4.3",
+		"config": "^3.3.6",
+		"express": "^4.17.1",
+		"express-validator": "^6.10.0",
+		"jsonwebtoken": "^8.5.1",
+		"mongoose": "^5.12.3",
+		"react-select": "^4.3.1",
+		"ts-node": "^9.1.1",
+		"typescript": "^4.2.3"
+	},
+	"devDependencies": {
+		"@types/node": "^15.0.2",
+		"@types/react-select": "^4.0.15",
+		"concurrently": "^6.0.1",
+		"nodemon": "^2.0.7"
+	},
+	"nodemonConfig": {
+		"ignore": [
+			"**/*.test.ts",
+			"**/*.spec.ts",
+			".git",
+			"node_modules"
+		],
+		"watch": [
+			"src"
+		],
+		"exec": "npm start",
+		"ext": "ts"
+	}
 }

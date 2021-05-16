@@ -1,0 +1,9 @@
+{
+	"compilerOptions": {
+		"outDir": "./public_html/js"
+	},
+	"extends": "../tsconfig.json",
+	"exclude": [
+		"../src/server"
+	]
+}

@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+		"outDir": "../app"
+	},
+	"extends": "../tsconfig.json",
+	"include": [
+		"./../src/server/**/*.ts"
+	],
+	"exclude": [
+		"../src/client"
+	]
+}

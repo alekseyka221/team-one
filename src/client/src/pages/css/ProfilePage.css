@@ -1,0 +1,21 @@
+#ProfilePage {
+    background: url("../backgrounds/backgroundProfile.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    min-height: 100vh;
+    background-repeat: repeat;
+    font-family: "Merriweather", serif;
+    margin: 0px;
+}
+
+.exchangeButtons {
+    background: rgba(255, 205, 210, 0.6)
+}
+
+#HomePage .addButton {
+    font-size: 48px;
+    font-weight: bolder
+}
