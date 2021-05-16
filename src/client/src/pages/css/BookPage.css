@@ -1,0 +1,63 @@
+#BookPage {
+    background: url("../backgrounds/backgroundHome.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    min-height: 100vh;
+    background-repeat: repeat;
+    font-family: "Merriweather", serif;
+    margin: 0px;
+    padding-top: 40px;
+}
+
+.Book {
+    height: 400px;
+    font-size: 20px;
+    background-color: rgba(255,173, 180, 0.8);
+    border-radius: 16px;
+    border: 2px solid #b5838d;
+}
+
+.Owner {
+    height: 400px;
+    border-radius: 16px;
+    border: 2px solid #293241;
+    background-color: rgba(240, 255, 240, 0.8);
+}
+
+#BookPage .Book {
+    padding-left: 0px;
+}
+
+#BookPage .bookImage {
+    align-self: center;
+    border-radius: 16px;
+    width: 200px;
+    height: 300px;
+}
+
+#BookPage .leftSideBook {
+    padding-left: 0px;
+    padding-top: 10px
+}
+
+#BookPage .userProfileRight {
+    padding: 0px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+#BookPage .userImage {
+    border-radius: 8px;
+    padding: 0px;
+}
+
+.bookOwnerText {
+    height: 128px;
+}
+
+.userInfoSPan {
+    font-size: 20px;
+}

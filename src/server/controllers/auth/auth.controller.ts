@@ -90,8 +90,9 @@ export class AuthController extends BaseController
 		)
 		this.generateResponse(
 			{
-				token,
-				userId : user.id
+				token : token,
+				userId : user.id,
+				message: "huy"
 			}
 		)
 		return;

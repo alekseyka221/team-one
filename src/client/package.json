@@ -11,10 +11,12 @@
 		"@types/react": "^17.0.3",
 		"@types/react-dom": "^17.0.3",
 		"@types/react-router-dom": "^5.1.7",
+		"cloudinary-react": "^1.7.0",
 		"hooks": "^0.3.2",
 		"materialize-css": "^1.0.0-rc.2",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
+		"react-notifications-component": "^3.1.0",
 		"react-router-dom": "^5.2.0",
 		"react-scripts": "4.0.3",
 		"typescript": "^4.2.3",
@@ -44,5 +46,8 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
+	},
+	"devDependencies": {
+		"@types/react-notifications-component": "^3.1.0"
 	}
 }

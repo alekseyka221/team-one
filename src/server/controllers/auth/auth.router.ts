@@ -20,7 +20,6 @@ class AuthRouter implements IRouter
 		{
 			controller.login([
 				Validator.isEmail(data['email']),
-				Validator.isLogin(data['login']),
 				Validator.isPassword(data['password'])
 			]);
 		}

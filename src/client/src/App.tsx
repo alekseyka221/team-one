@@ -5,25 +5,26 @@ import './App.css'
 import {Footer} from "./components/Footer";
 import {useAuth} from "./hooks/auth.hook";
 import {AuthContext} from "./context/AuthContext";
+import {NavBar} from "./components/NavBar";
+import ReactNotification from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css'
 
 function App()
 {
-	const {token, login, logout, userId, ready} = useAuth()
+	const {token, login, logout, userId} = useAuth()
 	const isAuthenticated = !!token
 
 	const routes = useRoutes(isAuthenticated);
 
 	return (
-		// @ts-ignore
-		<AuthContext.Provider value={{token, login, logout, userId, isAuthenticated}}>
-			<div className="App">
-				<Router>
-					{routes}
-				</Router>
+		<AuthContext.Provider value={{token, userId, login, logout, isAuthenticated}}>
+			<ReactNotification />
+			<Router>
+				{ isAuthenticated && <NavBar /> }
+				{routes}
 				<Footer/>
-			</div>
+			</Router>
 		</AuthContext.Provider>
-
 	);
 }
 

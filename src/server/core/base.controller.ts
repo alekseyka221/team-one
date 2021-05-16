@@ -17,8 +17,8 @@ export class BaseController
 	 */
 	protected generateResponse(responseData: Object, statusCode: number = 200 ,contentType: string = 'application/json')
 	{
-		this.res.statusCode = statusCode;
 		this.res.setHeader('Content-Type', contentType);
+		this.res.statusCode = statusCode;
 		if(contentType === 'application/json')
 		{
 			this.res.write(JSON.stringify(responseData));

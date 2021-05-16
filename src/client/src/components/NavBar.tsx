@@ -1,20 +1,27 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './NavBar.css'
+import {NavLink, useHistory} from 'react-router-dom'
+import {AuthContext} from "../context/AuthContext";
 
 export const NavBar = () => {
+
+	const history = useHistory()
+	const auth = useContext(AuthContext)
+
+	const logoutHandler = (event: any) => {
+		event.preventDefault()
+		auth.logout()
+		history.push('/')
+	}
+
+
 	return (
 		<nav>
 			<div className="nav-wrapper brown lighten-4">
-				<a href="#" className="brand-logo hide-on-med-and-down">BookExchange</a>
-					<form className="brand-logo s6 center">
-							<div className="input-field col s12">
-								<textarea id="textarea1" className="materialize-textarea"></textarea>
-							</div>
-					</form>
+				<NavLink to="/home"><img src="https://i.imgur.com/AVUHaGN.png" height="64px"/></NavLink>
 				<ul id="nav-mobile" className="right hide-on-med-and-down">
-					<li><a href="#">
-						Home
-					</a></li>
+					<li><NavLink to="/profile">Профиль</NavLink></li>
+					<li><a href="/" onClick={logoutHandler}>Выйти</a></li>
 				</ul>
 			</div>
 		</nav>

@@ -1,5 +1,5 @@
 #HomePage {
-    background: url("./AuthBackground.png") no-repeat center center fixed;
+    background: url("../backgrounds/backgroundHome.png") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -35,3 +35,12 @@
 
 }
 
+.motivationQuote {
+    font-style: italic;
+    font-size: 26px;
+}
+
+.filters {
+    font-size: 24px;
+    font-style: italic;
+}

@@ -32,11 +32,13 @@
 		"express-validator": "^6.10.0",
 		"jsonwebtoken": "^8.5.1",
 		"mongoose": "^5.12.3",
+		"react-select": "^4.3.1",
 		"ts-node": "^9.1.1",
 		"typescript": "^4.2.3"
 	},
 	"devDependencies": {
 		"@types/node": "^15.0.2",
+		"@types/react-select": "^4.0.15",
 		"concurrently": "^6.0.1",
 		"nodemon": "^2.0.7"
 	},

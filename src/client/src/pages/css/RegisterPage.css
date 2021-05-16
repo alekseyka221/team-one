@@ -1,5 +1,5 @@
 #RegisterPage {
-    background: url("./RegisterBackground.svg") no-repeat center center fixed;
+    background: url("../backgrounds/RegisterBackground.svg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -11,17 +11,26 @@
     margin: 0px;
 }
 
-#RegisterPage > .reg-container {
+#containerWrapper {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.reg-container {
     background-color: #BEAEAE;
     border-radius: 2px;
-    padding: 16px;
+
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     padding-bottom: 48px;
 }
 
+#containerWrapper > .reg-container {
+    padding: 16px;
+}
+
 .label__description {
     font-family: Merriweather, serif;
-    font-size: 32px;
+    font-size: 24px;
     font-style: italic;
     text-decoration: underline;
     color: #293241;
@@ -39,4 +48,20 @@
     font-style: italic;
     text-decoration: underline;
     color: #293241;
+}
+
+.formLower {
+    position: relative;
+    top: 80px;
+}
+
+.checkbox-blue-grey[type="checkbox"].filled-in:checked+span:not(.lever):after {
+    border: 2px solid #607d8b;
+    background-color: #607d8b;
+}
+
+.agreement {
+    display: inline-block;
+    margin: 8px;
+    min-height: 32px;
 }

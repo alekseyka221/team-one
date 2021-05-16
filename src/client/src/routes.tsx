@@ -4,12 +4,28 @@ import {AuthPage} from "./pages/AuthPage";
 import {RegisterPage} from "./pages/RegisterPage";
 import {HomePage} from './pages/HomePage'
 import {ProfilePage} from "./pages/ProfilePage";
+import {UploadPage} from "./pages/UploadPage";
+import {BookPage} from "./pages/BookPage";
 
 export const useRoutes = (isAuthenticated: boolean) => {
 	if (isAuthenticated)
 	{
 		return (
-			<h1>Ты когда авторизоваться успел?</h1>
+			<Switch>
+				<Route path="/home" exact>
+					<HomePage/>
+				</Route>
+				<Route path="/profile" exact>
+					<ProfilePage/>
+				</Route>
+				<Route path="/upload" exact>
+					<UploadPage/>
+				</Route>
+				<Route path="/book/:id">
+					<BookPage/>
+				</Route>
+				<Redirect to="/home"/>
+			</Switch>
 		)
 	}
 	return (
@@ -19,12 +35,6 @@ export const useRoutes = (isAuthenticated: boolean) => {
 			</Route>
 			<Route path="/register" exact>
 				<RegisterPage/>
-			</Route>
-			<Route path="/home" exact>
-				<HomePage/>
-			</Route>
-			<Route path="/profile" exact>
-				<ProfilePage/>
 			</Route>
 			<Redirect to="/"/>
 		</Switch>

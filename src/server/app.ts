@@ -23,7 +23,7 @@ async function startApp()
 			console.log('mongo has been connected');
 		});
 		app.listen(PORT, () => {
-			console.log("App has been started http://localhost:3000 ...");
+			console.log("App has been started http://localhost:5000 ...");
 				});
 	} catch (e)
 	{

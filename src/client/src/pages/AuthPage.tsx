@@ -1,7 +1,56 @@
-import React from 'react';
-import './AuthPage.css';
+import React, {useContext, useState} from 'react';
+import './css/AuthPage.css';
+import {useHttp} from "../hooks/http.hook";
+import { useHistory } from "react-router-dom";
+import {AuthContext} from "../context/AuthContext";
+import {store} from "react-notifications-component";
 
 export const AuthPage = () => {
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const {loading, request, error, clearError} = useHttp()
+
+	const history = useHistory();
+	const auth = useContext(AuthContext)
+
+	const goToRegister = () =>{
+		let path = `register`;
+		history.push(path);
+	}
+
+	const goToProfile = () =>{
+		let path = `profile`;
+		history.push(path);
+	}
+
+	const authHandler = async () => {
+		try
+		{
+			const data = await request('/auth/login', 'POST', {email, password})
+			auth.login(data.token, data.userId)
+		} catch (e)
+		{
+			store.addNotification(notifications.incorrectCredentials);
+		}
+	}
+
+	const notifications = {
+		incorrectCredentials: {
+			title: "Error!",
+			message: "Incorrect login and/or password",
+			type: "danger" as "danger",
+			insert: "bottom" as "bottom",
+			container: "bottom-right" as "bottom-right",
+			animationIn: ["animate__animated", "animate__fadeIn"],
+			animationOut: ["animate__animated", "animate__fadeOut"],
+			dismiss: {
+				duration: 2000,
+				onScreen: true,
+				pauseOnHover: true
+			}
+		},
+	}
+
 	return (
 		<div id="AuthPage" className="row l12 m12 s12">
 			<div className="authSpacer hide-on-med-and-down"></div>
@@ -76,19 +125,30 @@ export const AuthPage = () => {
 				<input
 					className="inputEmail yellow-input input-field white"
 					placeholder="email"
+					value={email}
+					onChange={(event => {
+						setEmail(event.target.value);
+					})}
 				/>
 				<input
 					className="inputPassword yellow-input input-field white"
 					placeholder="password"
+					type="password"
+					value={password}
+					onChange={(event => {
+						setPassword(event.target.value);
+					})}
 				/>
 				<div className="s12">
 					<button
-						className="loginButton waves-effect waves-light btn amber lighten-4"
+						className="loginButton waves-effect waves-light btn amber lighten-4 black-text"
+						onClick={authHandler}
 					>
 						Войти
 					</button>
 					<button
-						className="registrationButton waves-effect waves-light btn deep-orange lighten-3"
+						className="registrationButton waves-effect waves-light btn deep-orange lighten-3 black-text"
+						onClick={goToRegister}
 					>
 						Зарегистрироваться
 					</button>
